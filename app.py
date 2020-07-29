@@ -7,6 +7,7 @@ from sanic import Sanic, response
 from sanic.exceptions import abort, NotFound, Unauthorized
 from sanic_session import Session, InMemorySessionInterface
 from jinja2 import Environment, PackageLoader
+from keep_alive import keep_alive
 
 import aiohttp
 
@@ -79,6 +80,7 @@ async def get_logs_file(request, document):
 
 
 if __name__ == "__main__":
+    keep_alive()
     app.run(
         host=os.getenv("HOST", "0.0.0.0"),
         port=os.getenv("PORT", 8000),
